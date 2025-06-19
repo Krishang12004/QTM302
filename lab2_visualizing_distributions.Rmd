@@ -1,0 +1,45 @@
+
+---
+title: "Lab 2: Visualizing Distributions"
+author: "Krishang Shah"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dslabs)
+library(tidyverse)
+data(heights)
+```
+
+## 1. Count measurements for each sex
+
+```{r}
+male <- heights$height[heights$sex == "Male"]
+female <- heights$height[heights$sex == "Female"]
+length(male)
+length(female)
+```
+
+## 2. Percentile comparison
+
+```{r}
+female_percentiles <- quantile(female, probs = c(0.10, 0.30, 0.50, 0.70, 0.90))
+male_percentiles <- quantile(male, probs = c(0.10, 0.30, 0.50, 0.70, 0.90))
+data.frame(Female = female_percentiles, Male = male_percentiles)
+```
+
+## 3–7. Answering from Boxplot
+
+**3.** Asia has the country with the biggest population.  
+**4.** Americas has the largest median population.  
+**5.** Median population for Africa ≈ 13 million.  
+**6.** b. 0.75  
+**7.** Africa has the largest IQR after log transformation.
+
+## 8. Proportion of Male Heights between 69 and 72 inches
+
+```{r}
+x <- heights$height[heights$sex == "Male"]
+mean(x > 69 & x <= 72)
+```
